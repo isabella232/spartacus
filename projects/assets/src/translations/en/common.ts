@@ -21,6 +21,7 @@ export const common = {
     search: 'Search',
     add: 'Add',
     clear: 'Clear',
+    breadcrumbs: 'breadcrumbs',
     selectFile: 'Select file',
   },
   pageMetaResolver: {
