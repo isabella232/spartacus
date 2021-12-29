@@ -22,7 +22,9 @@ import { getCartIdByUserId, isCartNotFoundError } from '../../utils/utils';
 import { CartActions } from '../actions/index';
 import { StateWithMultiCart } from '../multi-cart-state';
 import { getCartHasPendingProcessesSelectorFactory } from '../selectors/multi-cart.selector';
-import { GlobalMessageService, GlobalMessageType } from '@spartacus/core';
+import { GlobalMessageType } from './../../../global-message/models/global-message.model';
+import { GlobalMessageService } from './../../../global-message/facade/global-message.service';
+
 
 @Injectable()
 export class CartEffects {
