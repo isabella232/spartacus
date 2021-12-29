@@ -214,9 +214,7 @@ export class RemoveCart extends EntityRemoveAction {
 
 export class DeleteCart implements Action {
   readonly type = DELETE_CART;
-  constructor(
-    public payload: { userId: string; cartId: string; active?: boolean }
-  ) {}
+  constructor(public payload: { userId: string; cartId: string }) {}
 }
 
 export class DeleteCartSuccess extends EntityRemoveAction {

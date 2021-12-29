@@ -323,12 +323,11 @@ export class MultiCartService {
    * @param userId
    * @param active flag used to when deleting the active cart
    */
-  deleteCart(cartId: string, userId: string, active?: boolean): void {
+  deleteCart(cartId: string, userId: string): void {
     this.store.dispatch(
       new CartActions.DeleteCart({
         userId,
         cartId,
-        active,
       })
     );
   }

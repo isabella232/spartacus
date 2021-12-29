@@ -10,6 +10,7 @@ import {
   Cart,
   EventService,
   GlobalMessageService,
+  GlobalMessageType,
   ActiveCartService,
 } from '@spartacus/core';
 import { ICON_TYPE } from '../../misc/icon/icon.model';
@@ -53,15 +54,14 @@ export class ClearCartDialogComponent implements OnInit, OnDestroy {
 
   clear(): void | boolean {
     this.activeCartService.clearActiveCart();
+    this.globalMessageService.add(
+      { key: 'clearCart.cartClearedSuccessfully' },
+      GlobalMessageType.MSG_TYPE_CONFIRMATION
+    );
   }
 
   close(reason: string): void {
     this.launchDialogService.closeDialog(reason);
-  }
-
-  onComplete(success: boolean): void {
-    if (success) {
-    }
   }
 
   ngOnDestroy(): void {
