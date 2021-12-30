@@ -7,20 +7,17 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  Cart,
   EventService,
   GlobalMessageService,
   GlobalMessageType,
   ActiveCartService,
+  DeleteCartSuccessEvent,
 } from '@spartacus/core';
 import { ICON_TYPE } from '../../misc/icon/icon.model';
 import { LaunchDialogService } from '../../../layout/launch-dialog/services/launch-dialog.service';
+import { FocusConfig } from '../../../layout/a11y/keyboard-focus/keyboard-focus.model';
 import { Subscription } from 'rxjs';
-
-export interface SavedCartFormDialogOptions {
-  cart: Cart;
-  layoutOption?: string;
-}
+import { mapTo, take } from 'rxjs/operators';
 
 @Component({
   selector: 'cx-clear-cart-dialog',
@@ -31,8 +28,13 @@ export class ClearCartDialogComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   iconTypes = ICON_TYPE;
-  cart: Cart;
-  layoutOption: string | undefined;
+
+  focusConfig: FocusConfig = {
+    trap: true,
+    block: true,
+    autofocus: 'button',
+    focusOnEscape: true,
+  };
 
   @HostListener('click', ['$event'])
   handleClick(event: UIEvent): void {
@@ -50,14 +52,26 @@ export class ClearCartDialogComponent implements OnInit, OnDestroy {
     protected activeCartService: ActiveCartService
   ) {}
 
-  ngOnInit(): void {}
-
-  clear(): void | boolean {
-    this.activeCartService.clearActiveCart();
-    this.globalMessageService.add(
-      { key: 'clearCart.cartClearedSuccessfully' },
-      GlobalMessageType.MSG_TYPE_CONFIRMATION
+  ngOnInit(): void {
+    this.subscription.add(
+      this.eventService
+        .get(DeleteCartSuccessEvent)
+        .pipe(take(1), mapTo(true))
+        .subscribe((success) => this.onComplete(success))
     );
+  }
+
+  clear(): void {
+    this.activeCartService.clearActiveCart();
+  }
+
+  onComplete(success: boolean): void {
+    if (success) {
+      this.globalMessageService.add(
+        { key: 'clearCart.cartClearedSuccessfully' },
+        GlobalMessageType.MSG_TYPE_CONFIRMATION
+      );
+    }
   }
 
   close(reason: string): void {

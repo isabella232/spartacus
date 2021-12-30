@@ -16,6 +16,7 @@ import {
   CartRemoveEntrySuccessEvent,
   CartUpdateEntryFailEvent,
   CartUpdateEntrySuccessEvent,
+  DeleteCartSuccessEvent,
 } from './cart.events';
 
 /**
@@ -66,6 +67,10 @@ export class CartEventBuilder {
     this.registerMapped({
       action: CartActions.CART_REMOVE_ENTRY_FAIL,
       event: CartRemoveEntryFailEvent,
+    });
+    this.registerMapped({
+      action: CartActions.DELETE_CART_SUCCESS,
+      event: DeleteCartSuccessEvent,
     });
   }
 

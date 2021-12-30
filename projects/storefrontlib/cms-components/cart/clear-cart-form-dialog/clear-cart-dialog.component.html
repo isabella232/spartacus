@@ -1,14 +1,20 @@
 <ng-container>
-  <div (esc)="close('Escape clicked')" class="cx-clear-cart-dialog">
+  <div
+    [cxFocus]="focusConfig"
+    (esc)="close('Escape clicked')"
+    class="cx-clear-cart-dialog"
+  >
     <div class="cx-clear-cart-container">
       <!-- Modal Header -->
       <div class="modal-header cx-clear-cart-header">
-        <div class="cx-clear-cart-title modal-title">Clear Cart</div>
+        <div class="cx-clear-cart-title modal-title">
+          {{ 'clearCart.clearCart' | cxTranslate }}
+        </div>
 
         <button
-          (click)="close('Close Save Cart Dialog')"
+          (click)="close('Close Clear Cart Dialog')"
           [attr.aria-label]="'common.close' | cxTranslate"
-          class="cx-saved-cart-form-close close"
+          class="close"
           type="button"
         >
           <span aria-hidden="true">
@@ -28,7 +34,7 @@
         <div>
           <div class="cx-clear-cart-footer">
             <button
-              (click)="close('Close Save Cart Dialog')"
+              (click)="close('Close Clear Cart Dialog')"
               class="btn btn-action"
               type="button"
             >

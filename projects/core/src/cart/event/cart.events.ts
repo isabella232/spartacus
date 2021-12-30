@@ -68,6 +68,13 @@ export class CartUpdateEntrySuccessEvent extends CartEvent {
   entry: OrderEntry;
 }
 
+export class DeleteCartSuccessEvent extends CartEvent {
+  /**
+   * Event's type
+   */
+  static readonly type = 'DeleteCartSuccessEvent';
+}
+
 export class CartUpdateEntryFailEvent extends CartEvent {
   /**
    * Event's type
