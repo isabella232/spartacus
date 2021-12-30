@@ -11,13 +11,11 @@ import {
   GlobalMessageService,
   GlobalMessageType,
   ActiveCartService,
-  DeleteCartSuccessEvent,
 } from '@spartacus/core';
 import { ICON_TYPE } from '../../misc/icon/icon.model';
 import { LaunchDialogService } from '../../../layout/launch-dialog/services/launch-dialog.service';
 import { FocusConfig } from '../../../layout/a11y/keyboard-focus/keyboard-focus.model';
 import { Subscription } from 'rxjs';
-import { mapTo, take } from 'rxjs/operators';
 
 @Component({
   selector: 'cx-clear-cart-dialog',
@@ -52,14 +50,7 @@ export class ClearCartDialogComponent implements OnInit, OnDestroy {
     protected activeCartService: ActiveCartService
   ) {}
 
-  ngOnInit(): void {
-    this.subscription.add(
-      this.eventService
-        .get(DeleteCartSuccessEvent)
-        .pipe(take(1), mapTo(true))
-        .subscribe((success) => this.onComplete(success))
-    );
-  }
+  ngOnInit(): void {}
 
   clear(): void {
     this.activeCartService.clearActiveCart();
