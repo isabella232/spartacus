@@ -5,7 +5,6 @@ import {
   CmsConfig,
   FeaturesConfigModule,
   I18nModule,
-  provideConfig,
   provideDefaultConfig,
   UrlModule,
 } from '@spartacus/core';
@@ -14,8 +13,7 @@ import { CartCouponModule } from '../cart-coupon/cart-coupon.module';
 import { CartSharedModule } from '../cart-shared/cart-shared.module';
 import { CartDetailsComponent } from './cart-details.component';
 import { CartValidationWarningsModule } from '../validation/cart-warnings/cart-validation-warnings.module';
-import { ClearCartDialogModule } from '../clear-cart-form-dialog/clear-cart-dialog.module';
-import { defaultClearCartLayoutConfig } from '../clear-cart-form-dialog';
+import { ClearCartModule } from '../clear-cart/clear-cart.module';
 
 @NgModule({
   imports: [
@@ -28,7 +26,7 @@ import { defaultClearCartLayoutConfig } from '../clear-cart-form-dialog';
     FeaturesConfigModule,
     I18nModule,
     CartValidationWarningsModule,
-    ClearCartDialogModule,
+    ClearCartModule
   ],
   providers: [
     provideDefaultConfig(<CmsConfig>{
@@ -38,7 +36,6 @@ import { defaultClearCartLayoutConfig } from '../clear-cart-form-dialog';
         },
       },
     }),
-    [provideConfig(defaultClearCartLayoutConfig)],
   ],
   declarations: [CartDetailsComponent],
   exports: [CartDetailsComponent],

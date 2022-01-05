@@ -12,10 +12,10 @@ import {
   GlobalMessageType,
   ActiveCartService,
 } from '@spartacus/core';
-import { ICON_TYPE } from '../../misc/icon/icon.model';
-import { LaunchDialogService } from '../../../layout/launch-dialog/services/launch-dialog.service';
-import { FocusConfig } from '../../../layout/a11y/keyboard-focus/keyboard-focus.model';
+import { LaunchDialogService } from '../../../../layout/launch-dialog/services/launch-dialog.service';
+import { FocusConfig } from '../../../../layout/a11y/keyboard-focus/keyboard-focus.model';
 import { Subscription } from 'rxjs';
+import { ICON_TYPE } from '../../../misc/icon/icon.model';
 
 @Component({
   selector: 'cx-clear-cart-dialog',

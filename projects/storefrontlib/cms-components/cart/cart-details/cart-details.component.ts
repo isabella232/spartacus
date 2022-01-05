@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   ActiveCartService,
   AuthService,
@@ -15,10 +8,8 @@ import {
   RoutingService,
   SelectiveCartService,
 } from '@spartacus/core';
-import { combineLatest, Observable, of, Subscription } from 'rxjs';
-import { filter, map, tap, take } from 'rxjs/operators';
-import { LaunchDialogService } from '../../../layout/launch-dialog/services/launch-dialog.service';
-import { LAUNCH_CALLER } from '../../../layout/launch-dialog/config/launch-config';
+import { combineLatest, Observable, of } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'cx-cart-details',
@@ -30,21 +21,14 @@ export class CartDetailsComponent implements OnInit {
   entries$: Observable<OrderEntry[]>;
   cartLoaded$: Observable<boolean>;
   loggedIn = false;
-  clearMode = false;
   promotionLocation: PromotionLocation = PromotionLocation.ActiveCart;
   selectiveCartEnabled: boolean;
-
-  private subscription = new Subscription();
-
-  @ViewChild('element') element: ElementRef;
 
   constructor(
     protected activeCartService: ActiveCartService,
     protected selectiveCartService: SelectiveCartService,
     protected authService: AuthService,
-    protected routingService: RoutingService,
-    protected vcr: ViewContainerRef,
-    protected launchDialogService: LaunchDialogService
+    protected routingService: RoutingService
   ) {}
 
   ngOnInit() {
@@ -70,31 +54,6 @@ export class CartDetailsComponent implements OnInit {
           : cartLoaded
       )
     );
-  }
-
-  //WORK in progess - remove?
-  clear(): void | boolean {
-    return this.clearMode
-      ? this.activeCartService.clearActiveCart()
-      : (this.clearMode = true);
-  }
-
-   //WORK in progess - remove?
-  cancelClearCart(): void {
-    this.clearMode = false;
-  }
-
-  openDialog(event: Event): void {
-    const dialog = this.launchDialogService.openDialog(
-      LAUNCH_CALLER.CLEAR_CART,
-      this.element,
-      this.vcr
-    );
-
-    if (dialog) {
-      this.subscription.add(dialog.pipe(take(1)).subscribe());
-    }
-    event.stopPropagation();
   }
 
   saveForLater(item: OrderEntry) {

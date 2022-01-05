@@ -464,11 +464,10 @@ export class ActiveCartService implements OnDestroy {
         take(1)
       )
       .subscribe(([cartId, userId, entries]) => {
-        for (const _ of entries) {
+        entries.forEach(() => {
           this.multiCartService.removeEntry(userId, cartId, 0);
-        }
-      })
-      .unsubscribe();
+        });
+      });
   }
 
   /**

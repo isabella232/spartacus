@@ -27,17 +27,7 @@
         }"
       ></cx-cart-item-list>
     </div>
-    <div *ngIf="cart.totalItems > 0" class="empty-cart-wrapper">
-      <button
-        *ngIf="cart$ | async as cart"
-        #element
-        (click)="openDialog($event)"
-        class="btn btn-block btn-action empty-cart-btn"
-        type="button"
-      >
-        {{ 'clearCart.clearCart' | cxTranslate }}
-      </button>
-    </div>
+    <cx-clear-cart></cx-clear-cart>
   </ng-container>
 </ng-container>
 
