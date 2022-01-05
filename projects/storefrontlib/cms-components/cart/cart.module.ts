@@ -17,6 +17,7 @@ import { AddOrderEntriesContext } from './order-entries-context/add-order-entrie
 import { GetOrderEntriesContext } from './order-entries-context/get-order-entries.context';
 import { ORDER_ENTRIES_CONTEXT } from './order-entries-context/order-entires.context';
 import { SaveForLaterModule } from './save-for-later/save-for-later.module';
+import { ClearCartModule } from './clear-cart/clear-cart.module';
 
 export type OrderEntriesContext = Partial<
   AddOrderEntriesContext & GetOrderEntriesContext
@@ -29,6 +30,7 @@ export type OrderEntriesContext = Partial<
     CartTotalsModule,
     CartSharedModule,
     SaveForLaterModule,
+    ClearCartModule,
     RouterModule.forChild([
       {
         // @ts-ignore
@@ -53,6 +55,7 @@ export type OrderEntriesContext = Partial<
     MiniCartModule,
     CartModule,
     SaveForLaterModule,
+    ClearCartModule
   ],
   declarations: [],
   providers: [

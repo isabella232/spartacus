@@ -22,7 +22,7 @@ import { defaultClearCartLayoutConfig } from '../clear-cart/clear-cart-dialog';
         },
       },
     }),
-    [provideConfig(defaultClearCartLayoutConfig)],
+    provideConfig(defaultClearCartLayoutConfig),
   ],
 })
 export class ClearCartModule {}

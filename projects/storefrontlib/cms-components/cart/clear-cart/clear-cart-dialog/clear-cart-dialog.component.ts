@@ -54,6 +54,7 @@ export class ClearCartDialogComponent implements OnInit, OnDestroy {
 
   clear(): void {
     this.activeCartService.clearActiveCart();
+    this.close('close dialog');
   }
 
   onComplete(success: boolean): void {
