@@ -87,7 +87,6 @@ export class AddedToCartToastComponent implements OnInit, OnDestroy {
       this.cartAddEntrySuccess$
         .pipe(
           switchMap((cartEntry) => {
-            console.log(cartEntry);
             return combineLatest([
               of(cartEntry),
               this.productService.get(cartEntry.productCode),

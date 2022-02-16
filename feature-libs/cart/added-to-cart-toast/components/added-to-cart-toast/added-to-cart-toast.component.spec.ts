@@ -1,5 +1,3 @@
-// import { DebugElement } from '@angular/core';
-// import { Renderer2 } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
