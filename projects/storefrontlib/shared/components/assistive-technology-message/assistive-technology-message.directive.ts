@@ -15,7 +15,7 @@ export class AtMessageDirective {
   /**
    * Usage [cxAtMessage]="'translatableKey' | cxTranslate"
    */
-  @Input() cxAtMessage: string;
+  @Input() cxAtMessage: string | string[];
 
   constructor(
     protected elementRef: ElementRef<HTMLElement>,
@@ -38,10 +38,13 @@ export class AtMessageDirective {
     event?.preventDefault();
 
     if (event?.target === this.host && this.cxAtMessage) {
-      this.host.focus();
+      const message = Array.isArray(this.cxAtMessage)
+        ? this.cxAtMessage.join('\n')
+        : this.cxAtMessage;
 
+      this.host.focus();
       this.globalMessageService.add(
-        this.cxAtMessage,
+        message,
         GlobalMessageType.MSG_TYPE_ASSISTIVE
       );
     }
