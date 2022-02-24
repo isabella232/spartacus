@@ -138,5 +138,7 @@ export const product = {
   productView: {
     gridView: 'Select to change to Grid View',
     listView: 'Select to change to List View',
+    changedToGridMode: 'Changed to grid view',
+    changedToListMode: 'Changed to list view',
   },
 };
