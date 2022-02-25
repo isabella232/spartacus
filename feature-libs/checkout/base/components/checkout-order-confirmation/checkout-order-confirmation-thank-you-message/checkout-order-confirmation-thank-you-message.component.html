@@ -1,11 +1,6 @@
 <ng-container *ngIf="order$ | async as order">
   <div
     class="cx-page-header"
-    [attr.aria-label]="
-      'checkoutOrderConfirmation.orderConfirmation' | cxTranslate
-    "
-    aria-atomic="true"
-    aria-live="polite"
   >
     <span class="cx-page-title">
       {{ 'checkoutOrderConfirmation.confirmationOfOrder' | cxTranslate }}

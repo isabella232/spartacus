@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   OnDestroy,
-  OnInit,
+  OnInit
 } from '@angular/core';
 import { CheckoutOrderConfirmationThankYouMessageComponent } from '@spartacus/checkout/base/components';
 import { CheckoutFacade } from '@spartacus/checkout/base/root';
 import { ORDER_TYPE } from '@spartacus/checkout/scheduled-replenishment/root';
+import { GlobalMessageService, TranslationService } from '@spartacus/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CheckoutReplenishmentFormService } from '../services/checkout-replenishment-form.service';
@@ -24,9 +26,12 @@ export class CheckoutScheduledReplenishmentOrderConfirmationThankYouMessageCompo
 
   constructor(
     protected checkoutFacade: CheckoutFacade,
+    protected globalMessageService: GlobalMessageService,
+    protected translationService: TranslationService,
+    protected elRef: ElementRef,
     protected checkoutReplenishmentFormService: CheckoutReplenishmentFormService
   ) {
-    super(checkoutFacade);
+    super(checkoutFacade, globalMessageService, translationService, elRef);
   }
 
   ngOnInit(): void {

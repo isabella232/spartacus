@@ -45,7 +45,8 @@ export class AtMessageDirective {
       this.host.focus();
       this.globalMessageService.add(
         message,
-        GlobalMessageType.MSG_TYPE_ASSISTIVE
+        GlobalMessageType.MSG_TYPE_ASSISTIVE,
+        1000
       );
     }
   }
